@@ -28,14 +28,11 @@ pub fn setup() -> Result<(), Error> {
     dag()
         .pipeline("setup kamal")?
         .flox()?
-        .with_exec(vec!["flox", "install", "ruby"])?
-        .with_exec(vec!["gem", "install", "kamal"])?
+        .with_exec(vec!["type ruby /dev/null 2> /dev/null || flox install ruby"])?
+        .with_exec(vec!["type kamal /dev/null 2> /dev/null || gem install --user-install kamal"])?
         .with_exec(vec!["[ -d $HOME/.local/bin ] || mkdir -p $HOME/.local/bin"])?
         .with_exec(vec![
-            "ln",
-            "-s",
-            "`gem environment gemhome`/bin/kamal",
-            "$HOME/.local/bin/kamal",
+            "[ -f $HOME/.local/bin/kamal ] || ln -s `gem environment user_gemhome`/bin/kamal $HOME/.local/bin/kamal",
         ])?
         .stdout()?;
     Ok(())

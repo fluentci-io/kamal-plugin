@@ -30,6 +30,7 @@ jobs:
       - name: Show kamal version
         run: |
           fluentci run --wasm . help
+          flox activate -- type kamal
           flox activate -- kamal version
         working-directory: example
         env:
