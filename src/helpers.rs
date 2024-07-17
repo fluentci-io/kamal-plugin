@@ -19,11 +19,6 @@ pub fn setup() -> Result<(), Error> {
     let home = dag().get_env("HOME")?;
     let path = dag().get_env("PATH")?;
 
-    dag().set_envs(vec![(
-        "PATH".into(),
-        format!("{}/.local/bin:{}", home, path),
-    )])?;
-
     setup_flox()?;
     dag()
         .pipeline("setup kamal")?
@@ -31,9 +26,15 @@ pub fn setup() -> Result<(), Error> {
         .with_exec(vec!["flox install ruby"])?
         .with_exec(vec!["gem install kamal"])?
         .with_exec(vec!["[ -d $HOME/.local/bin ] || mkdir -p $HOME/.local/bin"])?
-        .with_exec(vec![
-            "ln -s `gem environment gemhome`/bin/kamal $HOME/.local/bin/kamal || true",
-        ])?
+        .with_exec(vec!["ln -s `flox activate -- gem environment gemhome`/bin/kamal $HOME/.local/bin/kamal || true"])?
+        .with_exec(vec!["PATH=$HOME/.local/bin:$PATH", "type", "kamal"])?
+        .with_exec(vec!["type", "ruby"])?
         .stdout()?;
+
+    dag().set_envs(vec![(
+        "PATH".into(),
+        format!("{}/.local/bin:{}", home, path),
+    )])?;
+
     Ok(())
 }
