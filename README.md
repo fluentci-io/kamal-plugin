@@ -1,5 +1,6 @@
 # Kamal Plugin
 
+[![fluentci pipeline](https://shield.fluentci.io/x/kamal)](https://pkg.fluentci.io/kamal)
 [![ci](https://github.com/fluentci-io/kamal-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/fluentci-io/kamal-plugin/actions/workflows/ci.yml)
 
 This plugin install and run [kamal](https://kamal-deploy.org/) on your CI/CD pipelines.
