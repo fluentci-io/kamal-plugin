@@ -1,0 +1,12 @@
+[package]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>"
+]
+description = "Deploy web apps anywhere"
+license = "MIT"
+name = "kamal"
+version = "0.1.0"
+keywords = [
+  "kamal",
+  "deploy"
+]
