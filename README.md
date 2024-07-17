@@ -71,7 +71,6 @@ Github Actions:
     plugin: kamal
     args: |
       install
-    working-directory: example
 - name: Show kamal help
   run: |
     flox activate -- type kamal
