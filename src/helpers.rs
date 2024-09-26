@@ -18,13 +18,19 @@ pub fn setup_flox() -> Result<(), Error> {
 pub fn setup() -> Result<(), Error> {
     let home = dag().get_env("HOME")?;
     let path = dag().get_env("PATH")?;
+    let version = dag().get_env("KAMAL_VERSION")?;
+    let version = if version.is_empty() {
+        "".to_string()
+    } else {
+        format!("-v {}", version)
+    };
 
     setup_flox()?;
     dag()
         .pipeline("setup kamal")?
         .flox()?
         .with_exec(vec!["flox install ruby"])?
-        .with_exec(vec!["gem install kamal"])?
+        .with_exec(vec![&format!("gem install kamal {}", version)])?
         .with_exec(vec!["[ -d $HOME/.local/bin ] || mkdir -p $HOME/.local/bin"])?
         .with_exec(vec!["ln -s `flox activate -- gem environment gemhome`/bin/kamal $HOME/.local/bin/kamal || true"])?
         .with_exec(vec!["PATH=$HOME/.local/bin:$PATH", "type", "kamal"])?

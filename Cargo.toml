@@ -1,17 +1,13 @@
 [package]
-authors = [
-  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>",
-]
+authors = ["Tsiry Sandratraina <tsiry.sndr@fluentci.io>"]
 description = "Deploy web apps anywhere"
 edition = "2021"
 license = "MIT"
 name = "kamal"
-version = "0.1.0"
+version = "0.1.1"
 
 [lib]
-crate-type = [
-  "cdylib",
-]
+crate-type = ["cdylib"]
 
 [dependencies]
 anyhow = "1.0.82"
