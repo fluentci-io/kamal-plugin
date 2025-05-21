@@ -29,7 +29,7 @@ pub fn setup() -> Result<(), Error> {
     dag()
         .pipeline("setup kamal")?
         .flox()?
-        .with_exec(vec!["flox install ruby"])?
+        .with_exec(vec!["flox install ruby@3.3.4"])?
         .with_exec(vec![&format!("gem install kamal {}", version)])?
         .with_exec(vec!["[ -d $HOME/.local/bin ] || mkdir -p $HOME/.local/bin"])?
         .with_exec(vec!["ln -s `flox activate -- gem environment gemhome`/bin/kamal $HOME/.local/bin/kamal || true"])?

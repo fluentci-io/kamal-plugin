@@ -3,6 +3,6 @@ authors = ["Tsiry Sandratraina <tsiry.sndr@fluentci.io>"]
 description = "Deploy web apps anywhere"
 license = "MIT"
 name = "kamal"
-version = "0.1.1"
+version = "0.1.2"
 keywords = ["kamal", "deploy"]
 
